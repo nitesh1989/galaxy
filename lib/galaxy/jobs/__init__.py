@@ -1593,6 +1593,10 @@ class JobWrapper( object ):
             config_file = self.app.config.config_file
         if datatypes_config is None:
             datatypes_config = self.app.datatypes_registry.integrated_datatypes_configs
+        # Normalize dataset extensions (everything to lowercase)
+        for output_dataset_assoc in job.output_datasets + job.output_library_datasets:
+            output_dataset_assoc.dataset.extension = (output_dataset_assoc.dataset.extension).lower()
+
         return self.external_output_metadata.setup_external_metadata( [ output_dataset_assoc.dataset for
                                                                         output_dataset_assoc in
                                                                         job.output_datasets + job.output_library_datasets ],
