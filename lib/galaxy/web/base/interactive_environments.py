@@ -384,7 +384,15 @@ class InteractiveEnvironmentRequest(object):
         if 'Node' in inspect_data:
             return inspect_data['Node']['IP']
         elif self.attr.docker_hostname == "localhost":
-            return inspect_data['NetworkSettings']['Gateway']
+            # return inspect_data['NetworkSettings']['Gateway']
+            port_mappings = inspect_data['NetworkSettings']['Ports']
+            mappings = []
+            for port_name in port_mappings:
+                for binding in port_mappings[port_name]:
+                    mappings.append(
+                        binding['HostIp'])
+            print("Mappings: ", mappings)
+            return mappings[0]
         else:
             return self.attr.docker_hostname
 
