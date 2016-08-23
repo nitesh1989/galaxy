@@ -10,9 +10,7 @@ ie_request.attr.docker_port = 80
 # Create tempdir in galaxy
 temp_dir = ie_request.temp_dir
 PASSWORD = "rstudio"
-print("\n\n password: ",PASSWORD)
 USERNAME = "rstudio"
-print("\n\n username: ",USERNAME)
 # Then override it again
 ie_request.notebook_pw = "rstudio"
 
