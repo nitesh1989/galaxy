@@ -10,7 +10,9 @@ ie_request.attr.docker_port = 80
 # Create tempdir in galaxy
 temp_dir = ie_request.temp_dir
 PASSWORD = "rstudio"
+print("\n\n password: ",PASSWORD)
 USERNAME = "rstudio"
+print("\n\n username: ",USERNAME)
 # Then override it again
 ie_request.notebook_pw = "rstudio"
 
@@ -33,7 +35,7 @@ ie_request.launch(
 # through proxy.
 notebook_pubkey_url = ie_request.url_template('${PROXY_URL}/rstudio/auth-public-key')
 notebook_access_url = ie_request.url_template('${PROXY_URL}/rstudio/')
-notebook_login_url =  ie_request.url_template('${PROXY_URL}/rstudio/auth-do-sign-in')
+notebook_login_url =  ie_request.url_template('${PROXY_URL}/rstudio/auth-sign-in')
 
 %>
 <html>
