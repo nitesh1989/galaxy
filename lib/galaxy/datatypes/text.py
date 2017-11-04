@@ -55,7 +55,7 @@ class Html(Text):
                 if hdr and hdr[0].lower().find('<html>') >= 0:
                     return True
             return False
-        except:
+        except Exception:
             return True
 
 
@@ -104,7 +104,7 @@ class Json(Text):
     def display_peek(self, dataset):
         try:
             return dataset.peek
-        except:
+        except Exception:
             return "JSON file (%s)" % (nice_size(dataset.get_size()))
 
 
@@ -130,7 +130,7 @@ class Ipynb(Json):
                     return True
                 else:
                     return False
-            except:
+            except Exception:
                 return False
 
     def display_data(self, trans, dataset, preview=False, filename=None, to_ext=None, **kwd):
@@ -351,8 +351,8 @@ class Arff(Text):
             5.1,3.5,1.4,0.2,Iris-setosa
             4.9,3.0,1.4,0.2,Iris-setosa
         """
+        comment_lines = column_count = 0
         if dataset.has_data():
-            comment_lines = 0
             first_real_line = False
             data_block = False
             with open(dataset.file_name) as handle:
@@ -420,7 +420,7 @@ class SnpEffDb(Text):
             if m:
                 snpeff_version = m.groups()[0] + m.groups()[1]
             fh.close()
-        except:
+        except Exception:
             pass
         return snpeff_version
 
@@ -465,7 +465,7 @@ class SnpEffDb(Text):
                         fh.write("annotations: %s\n" % ','.join(annotations))
                     if regulations:
                         fh.write("regulations: %s\n" % ','.join(regulations))
-            except:
+            except Exception:
                 pass
 
 
